@@ -1,0 +1,117 @@
+# ignore generated binaries
+# but not the data folder
+###########################
+
+/bin/*
+!/bin/data/
+
+#########
+# general
+#########
+Resources/resources-iphone
+Resources/resources-ipad
+Resources/resources-iphonehd
+Resources/resources-ipadhd
+Resources-gen
+proj.cocosbuilder/*.plist
+proj.cocosbuilder/*.pvr.ccz
+proj.cocosbuilder/*sheet.png
+fileLookup.plist
+[Bb]uild/
+[Oo]bj/
+*.o
+[Dd]ebug*/
+[Rr]elease*/
+*.mode*
+*.app/
+*.pyc
+.svn/
+*.log
+*.DS_Store
+
+############
+# cocos2d-x libs
+############
+cocos2d/
+cocos2d
+
+########################
+# IDE files which should
+# be ignored
+########################
+
+# XCode
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+# XCode 4
+xcuserdata
+*.xcworkspace
+
+# Code::Blocks
+*.depend
+*.layout
+
+# Visual Studio
+*.sdf
+*.opensdf
+*.suo
+*.pdb
+*.ilk
+*.aps
+ipch/
+
+# Eclipse
+.metadata
+local.properties
+.externalToolBuilders
+.settings/
+##################
+# operating system
+##################
+
+# Linux
+*~
+# KDE
+.directory
+.AppleDouble
+
+# OSX
+.DS_Store
+*.swp
+*~.nib
+# Thumbnails
+._*
+
+# Windows
+# Image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+# WP
+*.sdf
+*.suo
+*.user
+*.opensdf
+Bin/
+Generated Files/
+ipch/
+Release/
+ARM/
+
+
+# Android
+.csettings
+Resources/interfaces
+Resources/images
+proj.cocosbuilder/images
+proj.android/libs/armeabi
+Partner.java
+proj.android/gen
+proj.android/assets
+*.orig
+lint.xml
+scripts/*.itmsp/*
