@@ -16,6 +16,7 @@
 #include "CCBUtils.h"
 #include "MathUtils.h"
 #include "Utils.h"
+#include "GenericCCBLoader.h"
 
 #include "ChangingContentSizeAction.h"
 #include "GameAction.h"

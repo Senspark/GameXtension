@@ -82,6 +82,7 @@
 		51C100D41B60F4BE008FC31D /* ExControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExControlButton.h; sourceTree = "<group>"; };
 		5800B9E61A309DBD0068D72E /* create_dialog_ccb.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = create_dialog_ccb.py; sourceTree = "<group>"; };
 		5800B9E71A309DBD0068D72E /* tp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = tp.sh; sourceTree = "<group>"; };
+		581EB2471D0DC866007BAC8B /* GenericCCBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericCCBLoader.h; sourceTree = "<group>"; };
 		583583511A3D5EF400DACAA9 /* gameXtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameXtension.h; sourceTree = "<group>"; };
 		58BDC50319FE48BB00A26F6A /* libGameXtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameXtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58BDC51B19FE4AA100A26F6A /* CCBUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBUtils.cpp; sourceTree = "<group>"; };
@@ -264,6 +265,7 @@
 				58BDC53019FE4AA100A26F6A /* MathUtils.h */,
 				58BDC53E19FE4AA100A26F6A /* Utils.cpp */,
 				58BDC53F19FE4AA100A26F6A /* Utils.h */,
+				581EB2471D0DC866007BAC8B /* GenericCCBLoader.h */,
 			);
 			name = managers_utils;
 			sourceTree = "<group>";
