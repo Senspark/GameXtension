@@ -83,7 +83,6 @@
 		5800B9E61A309DBD0068D72E /* create_dialog_ccb.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = create_dialog_ccb.py; sourceTree = "<group>"; };
 		5800B9E71A309DBD0068D72E /* tp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = tp.sh; sourceTree = "<group>"; };
 		581EB2471D0DC866007BAC8B /* GenericCCBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericCCBLoader.h; sourceTree = "<group>"; };
-		583583511A3D5EF400DACAA9 /* gameXtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameXtension.h; sourceTree = "<group>"; };
 		58BDC50319FE48BB00A26F6A /* libGameXtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameXtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58BDC51B19FE4AA100A26F6A /* CCBUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBUtils.cpp; sourceTree = "<group>"; };
 		58BDC51C19FE4AA100A26F6A /* CCBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBUtils.h; sourceTree = "<group>"; };
@@ -122,6 +121,7 @@
 		58BDC53D19FE4AA100A26F6A /* StringManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringManager.h; sourceTree = "<group>"; };
 		58BDC53E19FE4AA100A26F6A /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		58BDC53F19FE4AA100A26F6A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		58C240491D12ADE300D230FE /* gameXtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gameXtension.h; path = ../include/gameXtension.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -155,6 +155,7 @@
 			children = (
 				2C3074DD1CD060AF00C6F7BD /* cocos2d_libs.xcodeproj */,
 				5800B9E51A309DBD0068D72E /* scripts */,
+				58C240461D12ADD400D230FE /* include */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -210,7 +211,6 @@
 				58BDC55619FE54F300A26F6A /* dialogs */,
 				51179D881A71016D0014DE79 /* exui */,
 				58BDC53B19FE4AA100A26F6A /* SSMacros.h */,
-				583583511A3D5EF400DACAA9 /* gameXtension.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -306,6 +306,14 @@
 				58BDC53619FE4AA100A26F6A /* QuestionDialog.h */,
 			);
 			name = dialogs;
+			sourceTree = "<group>";
+		};
+		58C240461D12ADD400D230FE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				58C240491D12ADE300D230FE /* gameXtension.h */,
+			);
+			name = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
