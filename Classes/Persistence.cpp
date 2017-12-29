@@ -29,7 +29,7 @@ void Persistence::setLanguageCode(std::string langCode)
     _userDefault->flush();
 }
 
-std::string Persistence::getLanguageCode()
+std::string Persistence::getLanguageCode() const
 {
     return _userDefault->getStringForKey("lang-code", StringManager::getLangCode(senspark::LanguageType::ENGLISH));
 }
@@ -41,7 +41,7 @@ void Persistence::setSoundEnabled(bool soundEnable)
     _userDefault->flush();
 }
 
-bool Persistence::getSoundEnabled()
+bool Persistence::getSoundEnabled() const
 {
     return _soundEnabled;
 }
@@ -53,12 +53,12 @@ void Persistence::setMusicEnabled(bool musicEnable)
     _userDefault->flush();
 }
 
-bool Persistence::getMusicEnabled()
+bool Persistence::getMusicEnabled() const
 {
     return _musicEnabled;
 }
 
-int Persistence::getHighScore() {
+int Persistence::getHighScore() const  {
     return _userDefault->getIntegerForKey("high-score", 0);
 }
 
@@ -73,7 +73,7 @@ void Persistence::setFirstRunning(bool firstRunning)
     _userDefault->flush();
 }
 
-bool Persistence::getFirstRunning()
+bool Persistence::getFirstRunning() const
 {
     return _userDefault->getBoolForKey("first-running", true);
 }
