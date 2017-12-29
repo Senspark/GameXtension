@@ -157,12 +157,12 @@ void ExEditBox::onEnter(void)
     _bIsScheduleUpdateMaxText       = false;
     
     // check if done set maxlenght
-    if(_maxLength <= 0)
+//    if(_maxLength <= 0)
     {
         _bIsScheduleUpdateMaxText   = true;
         pLable                      = Label::create();
-        pLable->setSystemFontName(_fontName);
-        pLable->setSystemFontSize(_fontSize);
+//        pLable->setSystemFontName(_fontName);
+//        pLable->setSystemFontSize(_fontSize);
         this->addChild(pLable);
         pLable->setVisible(false);
         

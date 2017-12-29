@@ -32,14 +32,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		581817531D09DC5300C1782F /* PBXContainerItemProxy */ = {
+		EBD572181E9B3113003B8162 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C3074DD1CD060AF00C6F7BD /* cocos2d_libs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1551A33F158F2AB200E66CFE;
 			remoteInfo = "libcocos2d Mac";
 		};
-		581817551D09DC5300C1782F /* PBXContainerItemProxy */ = {
+		EBD5721A1E9B3113003B8162 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C3074DD1CD060AF00C6F7BD /* cocos2d_libs.xcodeproj */;
 			proxyType = 2;
@@ -66,7 +66,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2C3074DD1CD060AF00C6F7BD /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = build/cocos2d_libs.xcodeproj; sourceTree = COCOS2DX_ROOT; };
+		2C3074DD1CD060AF00C6F7BD /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "../../gold-miner-refactor/cocos2d/build/cocos2d_libs.xcodeproj"; sourceTree = COCOS2DX_ROOT; };
 		46880B7919C43A67006E1F66 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -129,6 +129,7 @@
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		EBD572041E9B2FD2003B8162 /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "../../../../../../Library/Developer/Xcode/DerivedData/gold-miner-fbijqgqhxbkngjgvdkpuzmxcmmxl/Build/Products/Debug-iphoneos/libcocos2d iOS.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +168,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBD572041E9B2FD2003B8162 /* libcocos2d iOS.a */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -241,15 +243,6 @@
 			path = ../scripts;
 			sourceTree = "<group>";
 		};
-		5818174F1D09DC5300C1782F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				581817541D09DC5300C1782F /* libcocos2d Mac.a */,
-				581817561D09DC5300C1782F /* libcocos2d iOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		58BDC55419FE548900A26F6A /* managers_utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +309,15 @@
 			name = include;
 			sourceTree = "<group>";
 		};
+		EBD572141E9B3113003B8162 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBD572191E9B3113003B8162 /* libcocos2d Mac.a */,
+				EBD5721B1E9B3113003B8162 /* libcocos2d iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -363,7 +365,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5818174F1D09DC5300C1782F /* Products */;
+					ProductGroup = EBD572141E9B3113003B8162 /* Products */;
 					ProjectRef = 2C3074DD1CD060AF00C6F7BD /* cocos2d_libs.xcodeproj */;
 				},
 			);
@@ -375,18 +377,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		581817541D09DC5300C1782F /* libcocos2d Mac.a */ = {
+		EBD572191E9B3113003B8162 /* libcocos2d Mac.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libcocos2d Mac.a";
-			remoteRef = 581817531D09DC5300C1782F /* PBXContainerItemProxy */;
+			remoteRef = EBD572181E9B3113003B8162 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		581817561D09DC5300C1782F /* libcocos2d iOS.a */ = {
+		EBD5721B1E9B3113003B8162 /* libcocos2d iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libcocos2d iOS.a";
-			remoteRef = 581817551D09DC5300C1782F /* PBXContainerItemProxy */;
+			remoteRef = EBD5721A1E9B3113003B8162 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -464,7 +466,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = GameXtension;
 				SDKROOT = iphoneos;
@@ -526,6 +528,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				COCOS2DX_ROOT = "${SRCROOT}/../../../cocos2d";
 				COPY_PHASE_STRIP = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -547,7 +550,6 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -560,6 +562,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				COCOS2DX_ROOT = "${SRCROOT}/../../../cocos2d";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -579,7 +582,6 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
