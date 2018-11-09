@@ -9,7 +9,7 @@
 #include "StringManager.h"
 
 NS_SS_BEGIN
-    
+
 StringManager* _instance = NULL;
 
 StringManager* StringManager::getInstance() {
@@ -99,6 +99,7 @@ const string StringManager::getString(const string &key, const string &langCode)
     // return value
     string strValue     = "";
     string strLangCode  = langCode;
+    std::string defaultLangCode = "en";
     
     // check if exist input language data
     if (_dictionaries.count(strLangCode) == 0)
@@ -113,9 +114,11 @@ const string StringManager::getString(const string &key, const string &langCode)
         if(_dictionaries[strLangCode].count(key) > 0)
         {
             strValue    = _dictionaries[strLangCode][key].asString();
+        } else if (_dictionaries[defaultLangCode].count(key) > 0) {
+            strValue = _dictionaries[defaultLangCode][key].asString();
         }
     }
-    
+
     return strValue;
 }
 
