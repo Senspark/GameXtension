@@ -24,8 +24,8 @@
 
 NS_SS_BEGIN
 
-USING_NS_CC;
-using namespace std;
+//USING_NS_CC;
+//using namespace std;
 
 enum class LanguageType {
     UNDEFINED = -1,
@@ -100,28 +100,28 @@ public:
     CC_SYNTHESIZE_READONLY(senspark::LanguageType, _defaultLanguage, DefaultLanguage);
     void setDefaultLanguage(senspark::LanguageType defaultLanguage);
 
-    virtual void setDefaultLanguageCode(const string& langCode);
-    virtual string getDefaultLanguageCode() {
+    virtual void setDefaultLanguageCode(const std::string& langCode);
+    virtual std::string getDefaultLanguageCode() {
         return _defaultLanguageCode;
     }
     
     // Get string with a providing language
-    const string getString(const string &key, const string &langCode);
-    const string getString(const string &key, senspark::LanguageType langType);
+    const std::string getString(const std::string &key, const std::string &langCode);
+    const std::string getString(const std::string &key, senspark::LanguageType langType);
     
     // Check if support language
     bool isSupportLanguage(senspark::LanguageType type);
     
     // Get string with the default language
-    const string getString(const string &key);
+    const std::string getString(const std::string &key);
     
     // Init language code array, language data dictionary path array, default language
     int init(const char **langCodes, const char** dictionaryPaths, const char* defaultLangCode);
     int init(std::vector<senspark::LanguageType> langTypes, senspark::LanguageType defaultLangType);
     int init(senspark::LanguageType defaultLangType);
 
-    static string getLangCode(senspark::LanguageType langType);
-    static senspark::LanguageType getLangType(string langCode);
+    static std::string getLangCode(senspark::LanguageType langType);
+    static senspark::LanguageType getLangType(std::string langCode);
     
 CC_CONSTRUCTOR_ACCESS:
     StringManager() {};
@@ -130,8 +130,8 @@ CC_CONSTRUCTOR_ACCESS:
     }
 private:
     
-    std::unordered_map<std::string,ValueMap> _dictionaries;
-    string _defaultLanguageCode;
+    std::unordered_map<std::string,cocos2d::ValueMap> _dictionaries;
+    std::string _defaultLanguageCode;
 };
 
 NS_SS_END

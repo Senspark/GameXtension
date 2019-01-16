@@ -17,7 +17,7 @@ NS_SS_BEGIN
 #define TAG_TAB_ITEM            2015
 
 
-MenuItemTab * MenuItemTab::create(const std::string& normalImage, const std::string& selectedImage, const std::string& disabledImage, const ccMenuCallback& callback)
+MenuItemTab * MenuItemTab::create(const std::string& normalImage, const std::string& selectedImage, const std::string& disabledImage, const cocos2d::ccMenuCallback& callback)
 {
     MenuItemTab *ret = new (std::nothrow) MenuItemTab();
     if (ret && ret->initWithNormalImage(normalImage, selectedImage, disabledImage, callback))
@@ -25,19 +25,19 @@ MenuItemTab * MenuItemTab::create(const std::string& normalImage, const std::str
         // check if image null
         if(ret->getSelectedImage() == nullptr)
         {
-            auto pSprite = Sprite::createWithSpriteFrameName(selectedImage);
+            auto pSprite = cocos2d::Sprite::createWithSpriteFrameName(selectedImage);
             ret->setSelectedImage(pSprite);
         }
         
         if(ret->getNormalImage() == nullptr)
         {
-            auto pSprite = Sprite::createWithSpriteFrameName(normalImage);
+            auto pSprite = cocos2d::Sprite::createWithSpriteFrameName(normalImage);
             ret->setNormalImage(pSprite);
         }
         
         if(ret->getDisabledImage() == nullptr)
         {
-            auto pSprite = Sprite::createWithSpriteFrameName(disabledImage);
+            auto pSprite = cocos2d::Sprite::createWithSpriteFrameName(disabledImage);
             ret->setDisabledImage(pSprite);
         }
         
@@ -115,7 +115,7 @@ void MenuItemTab::cusUnselected()
 
 }
 
-ExTabView::ExTabView(Rect rect, string strTabNormal, string strTabActive, ccMenuCallback menuTabCallback, ccMenuCallback menuCloseCallback, string strTabClose, string strTabCloseSelect)
+ExTabView::ExTabView(cocos2d::Rect rect, std::string strTabNormal, std::string strTabActive, cocos2d::ccMenuCallback menuTabCallback, cocos2d::ccMenuCallback menuCloseCallback, std::string strTabClose, std::string strTabCloseSelect)
 {
     this->setContentSize(rect.size);
     this->setPosition(rect.origin);
@@ -124,7 +124,7 @@ ExTabView::ExTabView(Rect rect, string strTabNormal, string strTabActive, ccMenu
     _tabSize            = DEF_HEADER_SIZE;
     _leftMargin         = 8.0f;
 //    _titleFontName      = "Marker Felt";
-    _titleFontColor     = Color3B(0xfb, 0xcf, 0x4b);
+    _titleFontColor     = cocos2d::Color3B(0xfb, 0xcf, 0x4b);
     _titleFontSize      = 32.0f;
     _preSelectedTab     = nullptr;
     _selectedTab        = 0;
@@ -144,31 +144,31 @@ ExTabView::ExTabView(Rect rect, string strTabNormal, string strTabActive, ccMenu
     this->setImgTabCloseSelect(strTabCloseSelect);
     
     // pre-load tab images
-    Director::getInstance()->getTextureCache()->addImage(_strImgTabNormal);
-    Director::getInstance()->getTextureCache()->addImage(_strImgTabActive);
-    Director::getInstance()->getTextureCache()->addImage(_strImgTabClose);
-    Director::getInstance()->getTextureCache()->addImage(_strImgTabCloseSelect);
+    cocos2d::Director::getInstance()->getTextureCache()->addImage(_strImgTabNormal);
+    cocos2d::Director::getInstance()->getTextureCache()->addImage(_strImgTabActive);
+    cocos2d::Director::getInstance()->getTextureCache()->addImage(_strImgTabClose);
+    cocos2d::Director::getInstance()->getTextureCache()->addImage(_strImgTabCloseSelect);
     
     // get the size of the tab
-    if(Director::getInstance()->getTextureCache()->getTextureForKey(_strImgTabNormal) != nullptr)
+    if(cocos2d::Director::getInstance()->getTextureCache()->getTextureForKey(_strImgTabNormal) != nullptr)
     {
-        _tabSize = Director::getInstance()->getTextureCache()->getTextureForKey(_strImgTabNormal)->getContentSize();
+        _tabSize = cocos2d::Director::getInstance()->getTextureCache()->getTextureForKey(_strImgTabNormal)->getContentSize();
     }
-    else if (SpriteFrameCache::getInstance()->getSpriteFrameByName(_strImgTabNormal) != nullptr)
+    else if (cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(_strImgTabNormal) != nullptr)
     {
-        _tabSize = SpriteFrameCache::getInstance()->getSpriteFrameByName(_strImgTabNormal)->getRect().size;
+        _tabSize = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(_strImgTabNormal)->getRect().size;
     }
     
     // create sub view container
-    _realSubContentSize = Size(rect.size.width, rect.size.height - _tabSize.height);
-    _backgroundColor    = Color4B(0,0,0,0);
-    _tabView            = LayerColor::create(_backgroundColor, rect.size.width, rect.size.height - _tabSize.height);
+    _realSubContentSize = cocos2d::Size(rect.size.width, rect.size.height - _tabSize.height);
+    _backgroundColor    = cocos2d::Color4B(0,0,0,0);
+    _tabView            = cocos2d::LayerColor::create(_backgroundColor, rect.size.width, rect.size.height - _tabSize.height);
     
-    _tabView->setPosition(Vec2::ZERO);
+    _tabView->setPosition(cocos2d::Vec2::ZERO);
     this->addChild(_tabView);
 }
 
-ExTabView* ExTabView::create(Rect rect, string strTabNormal, string strTabActive, ccMenuCallback menuTabCallback, ccMenuCallback menuCloseCallback, string strTabClose, string strTabCloseSelect)
+ExTabView* ExTabView::create(cocos2d::Rect rect, std::string strTabNormal, std::string strTabActive, cocos2d::ccMenuCallback menuTabCallback, cocos2d::ccMenuCallback menuCloseCallback, std::string strTabClose, std::string strTabCloseSelect)
 {
     ExTabView *pRet = new ExTabView(rect, strTabNormal, strTabActive, menuTabCallback, menuCloseCallback, strTabClose, strTabCloseSelect);
     if (pRet && pRet->init())
@@ -184,7 +184,7 @@ ExTabView* ExTabView::create(Rect rect, string strTabNormal, string strTabActive
     }
 }
 
-void ExTabView::addTab(string strTabName, Node* tabView, ccMenuCallback menuTabCallback/* = 0*/, bool bFitWidthWithText/* = false*/, float fTabWidth/* = -1.0f*/)
+void ExTabView::addTab(std::string strTabName, Node* tabView, cocos2d::ccMenuCallback menuTabCallback/* = 0*/, bool bFitWidthWithText/* = false*/, float fTabWidth/* = -1.0f*/)
 {
     TabData data;
     data.TabName        = strTabName;
@@ -250,11 +250,11 @@ void ExTabView::tabClicked(Ref* obj)
         
         // remove previous tab view
         _tabView->removeAllChildren();
-        _tabView->setColor(Color3B(_backgroundColor));
+        _tabView->setColor(cocos2d::Color3B(_backgroundColor));
         _tabView->setOpacity(_backgroundColor.a);
         auto subView = _tabViewArray.at(nTabIndex);
         float yPos = _realContentSize.height - _tabSize.height - _realSubContentSize.height;
-        subView->setPosition(Vec2(0.0f, yPos));
+        subView->setPosition(cocos2d::Vec2(0.0f, yPos));
         _tabView->addChild(subView);
     }
     else
@@ -279,10 +279,10 @@ void ExTabView::tabClicked(Ref* obj)
     }
 }
 
-void ExTabView::setBackgroundColor(Color4B color)
+void ExTabView::setBackgroundColor(cocos2d::Color4B color)
 {
     _backgroundColor = color;
-    _tabView->setColor(Color3B(_backgroundColor));
+    _tabView->setColor(cocos2d::Color3B(_backgroundColor));
 }
 
 void ExTabView::initTabData()
@@ -296,7 +296,7 @@ void ExTabView::initTabData()
     }
     
     // calcu for the min tab pos
-    ssize_t tabCount = min(tabDataCount, tabViewCount);
+    ssize_t tabCount = std::min(tabDataCount, tabViewCount);
     
     // check and make menu clear
     if(_pMenu)
@@ -314,8 +314,8 @@ void ExTabView::initTabData()
     }
     
     // prepare for make menu item
-    Vec2 vec2NextPos    = Vec2::ZERO;
-    Vector<MenuItem*> menuItemArray;
+    cocos2d::Vec2 vec2NextPos    = cocos2d::Vec2::ZERO;
+    cocos2d::Vector<cocos2d::MenuItem*> menuItemArray;
     
     // clear all cells
     _mapCells.clear();
@@ -333,20 +333,20 @@ void ExTabView::initTabData()
         }
         else if(_tabDataArray.at(i).IsFitWidth) // use tab name for calcu the
         {
-            Label* pLabel = nullptr;
+            cocos2d::Label* pLabel = nullptr;
             if(_titleFontName.find(".fnt") != std::string::npos)
             {
-                pLabel = Label::createWithBMFont(_titleFontName, _tabDataArray.at(i).TabName);
+                pLabel = cocos2d::Label::createWithBMFont(_titleFontName, _tabDataArray.at(i).TabName);
             }
             else
             {
-                if (FileUtils::getInstance()->isFileExist(_titleFontName))
+                if (cocos2d::FileUtils::getInstance()->isFileExist(_titleFontName))
                 {
-                    pLabel = Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
+                    pLabel = cocos2d::Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
                 }
                 else
                 {
-                    pLabel = Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
+                    pLabel = cocos2d::Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
                 }
             }
             
@@ -363,10 +363,10 @@ void ExTabView::initTabData()
     float fBtnWidthTemp = 0.0f;
     if(_strImgTabClose.length() > 0)
     {
-        auto pSpriteTemp = Sprite::create(_strImgTabClose);
+        auto pSpriteTemp = cocos2d::Sprite::create(_strImgTabClose);
         if(pSpriteTemp == nullptr)
         {
-             pSpriteTemp = Sprite::createWithSpriteFrameName(_strImgTabClose);
+             pSpriteTemp = cocos2d::Sprite::createWithSpriteFrameName(_strImgTabClose);
         }
         
         if(pSpriteTemp)
@@ -383,10 +383,10 @@ void ExTabView::initTabData()
         // re-set
         _nTabsCountScrollView = 0;
         // add scrollview
-        _pTabScrollView = TableView::create(this, Size(fRealMaxTabsSize, _tabSize.height));
+        _pTabScrollView = TableView::create(this, cocos2d::Size(fRealMaxTabsSize, _tabSize.height));
         _pTabScrollView->setDirection(ScrollView::Direction::HORIZONTAL);
-        _pTabScrollView->setAnchorPoint(Vec2(0.5f, 0.5f));
-        _pTabScrollView->setPosition(Vec2(fRealTabsMargin,
+        _pTabScrollView->setAnchorPoint(cocos2d::Vec2(0.5f, 0.5f));
+        _pTabScrollView->setPosition(cocos2d::Vec2(fRealTabsMargin,
                                           _realContentSize.height - _tabSize.height));
         _pTabScrollView->setDelegate(this);
         this->addChild(_pTabScrollView);
@@ -402,15 +402,15 @@ void ExTabView::initTabData()
         // set number of tabs for scroll view  = 0 -> because not use it
         _nTabsCountScrollView = 0;
         
-        Vec2 vec2TabPos     = Vec2( (_realContentSize.width - (fRealTabsSize) - (_leftMargin * (tabCount - 1))) * 0.5f + _mapTabWidth[0] * 0.5f,
+        cocos2d::Vec2 vec2TabPos     = cocos2d::Vec2( (_realContentSize.width - (fRealTabsSize) - (_leftMargin * (tabCount - 1))) * 0.5f + _mapTabWidth[0] * 0.5f,
                                    (_realContentSize.height - (_tabSize.height * 0.5f)));
     
         for (int i = 0; i < tabCount; i++)
         {
             // set tab background
-            vec2NextPos = vec2TabPos + Vec2((_mapTabWidth[i] + (_mapTabWidth.count(i + 1) > 0 ? _mapTabWidth[i + 1] : _mapTabWidth[i])) * 0.5f + _leftMargin, 0.0f);
+            vec2NextPos = vec2TabPos + cocos2d::Vec2((_mapTabWidth[i] + (_mapTabWidth.count(i + 1) > 0 ? _mapTabWidth[i + 1] : _mapTabWidth[i])) * 0.5f + _leftMargin, 0.0f);
             MenuItemTab* pMenuItem = MenuItemTab::create(_strImgTabNormal, _strImgTabActive, _strImgTabNormal, CC_CALLBACK_1(ExTabView::tabClicked, this));
-            pMenuItem->setAnchorPoint(Vec2(0.5f, 0.5f));
+            pMenuItem->setAnchorPoint(cocos2d::Vec2(0.5f, 0.5f));
             pMenuItem->setPosition(vec2TabPos);
             pMenuItem->setTag(i);
             pMenuItem->setName(_tabDataArray.at(i).TabName);
@@ -424,33 +424,33 @@ void ExTabView::initTabData()
                 _preSelectedTab = pMenuItem;
             
                 _tabView->removeAllChildren();
-                _tabView->setColor(Color3B(_backgroundColor));
+                _tabView->setColor(cocos2d::Color3B(_backgroundColor));
                 auto subView = _tabViewArray.at(i);
                 float yPos = _realContentSize.height - _tabSize.height - _realSubContentSize.height;
-                subView->setPosition(Vec2(0.0f, yPos));
+                subView->setPosition(cocos2d::Vec2(0.0f, yPos));
                 _tabView->addChild(subView);
             }
         
             // set tab title
-            Label* pLabel = nullptr;
+            cocos2d::Label* pLabel = nullptr;
             if(_titleFontName.find(".fnt") != std::string::npos)
             {
-                pLabel = Label::createWithBMFont(_titleFontName, _tabDataArray.at(i).TabName);
+                pLabel = cocos2d::Label::createWithBMFont(_titleFontName, _tabDataArray.at(i).TabName);
             }
             else
             {
-                if (FileUtils::getInstance()->isFileExist(_titleFontName))
+                if (cocos2d::FileUtils::getInstance()->isFileExist(_titleFontName))
                 {
-                    pLabel = Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
+                    pLabel = cocos2d::Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
                 }
                 else
                 {
-                    pLabel = Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
+                    pLabel = cocos2d::Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
                 }
             }
-            pLabel->setAnchorPoint(Vec2(0.5f, 0.5f));
+            pLabel->setAnchorPoint(cocos2d::Vec2(0.5f, 0.5f));
             pLabel->setColor(_titleFontColor);
-            pLabel->setPosition(Vec2(_tabSize.width * 0.5f, _tabSize.height * 0.5f));
+            pLabel->setPosition(cocos2d::Vec2(_tabSize.width * 0.5f, _tabSize.height * 0.5f));
             pLabel->setScaleX(1.0f / pMenuItem->getScaleX());
             
             pMenuItem->addChild(pLabel);
@@ -465,29 +465,29 @@ void ExTabView::initTabData()
     if(_menuCloseCallback && _strImgTabClose.length() > 0 && _strImgTabCloseSelect.length() > 0)
     {
         // add close btn
-        MenuItemImage* pMenuItem = MenuItemImage::create(_strImgTabClose, _strImgTabCloseSelect, _strImgTabClose, _menuCloseCallback);
+        cocos2d::MenuItemImage* pMenuItem = cocos2d::MenuItemImage::create(_strImgTabClose, _strImgTabCloseSelect, _strImgTabClose, _menuCloseCallback);
         
         // check if image null
         if(pMenuItem->getSelectedImage() == nullptr)
         {
-            auto pSprite = Sprite::createWithSpriteFrameName(_strImgTabCloseSelect);
+            auto pSprite = cocos2d::Sprite::createWithSpriteFrameName(_strImgTabCloseSelect);
             pMenuItem->setSelectedImage(pSprite);
         }
         
         if(pMenuItem->getNormalImage() == nullptr)
         {
-            auto pSprite = Sprite::createWithSpriteFrameName(_strImgTabClose);
+            auto pSprite = cocos2d::Sprite::createWithSpriteFrameName(_strImgTabClose);
             pMenuItem->setNormalImage(pSprite);
         }
         
         if(pMenuItem->getDisabledImage() == nullptr)
         {
-            auto pSprite = Sprite::createWithSpriteFrameName(_strImgTabClose);
+            auto pSprite = cocos2d::Sprite::createWithSpriteFrameName(_strImgTabClose);
             pMenuItem->setDisabledImage(pSprite);
         }
         
-        pMenuItem->setAnchorPoint(Vec2(0.5f, 0.5f));
-        pMenuItem->setPosition(Vec2(_realContentSize.width - _rightCloseMargin - (pMenuItem->getContentSize().width * 0.5f),
+        pMenuItem->setAnchorPoint(cocos2d::Vec2(0.5f, 0.5f));
+        pMenuItem->setPosition(cocos2d::Vec2(_realContentSize.width - _rightCloseMargin - (pMenuItem->getContentSize().width * 0.5f),
                                     _realContentSize.height - _topCloseMargin - (pMenuItem->getContentSize().height * 0.5f)));
     
         menuItemArray.pushBack(pMenuItem);
@@ -495,8 +495,8 @@ void ExTabView::initTabData()
     
     if(menuItemArray.size() > 0)
     {
-        _pMenu = Menu::createWithArray(menuItemArray);
-        _pMenu->setPosition(Vec2::ZERO);
+        _pMenu = cocos2d::Menu::createWithArray(menuItemArray);
+        _pMenu->setPosition(cocos2d::Vec2::ZERO);
         this->addChild(_pMenu);
     }
 }
@@ -510,10 +510,10 @@ void ExTabView::onEnter()
 
 void ExTabView::onExit()
 {
-    Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabNormal);
-    Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabActive);
-    Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabClose);
-    Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabCloseSelect);
+    cocos2d::Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabNormal);
+    cocos2d::Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabActive);
+    cocos2d::Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabClose);
+    cocos2d::Director::getInstance()->getTextureCache()->removeTextureForKey(_strImgTabCloseSelect);
     
     Node::onExit();
 }
@@ -523,9 +523,9 @@ void ExTabView::tableCellTouched(TableView* table, TableViewCell* cell)
     this->tabClicked(cell->getChildByTag(TAG_TAB_ITEM));
 }
 
-Size ExTabView::tableCellSizeForIndex(TableView *table, ssize_t idx)
+cocos2d::Size ExTabView::tableCellSizeForIndex(TableView *table, ssize_t idx)
 {
-    return Size(_mapTabWidth[(int)idx] + _leftMargin, _tabSize.height);
+    return cocos2d::Size(_mapTabWidth[(int)idx] + _leftMargin, _tabSize.height);
 }
 
 TableViewCell* ExTabView::tableCellAtIndex(TableView *table, ssize_t idx)
@@ -547,8 +547,8 @@ TableViewCell* ExTabView::tableCellAtIndex(TableView *table, ssize_t idx)
         
         
             MenuItemTab* pMenuItem = MenuItemTab::create(_strImgTabNormal, _strImgTabActive, _strImgTabNormal, CC_CALLBACK_1(ExTabView::tabClicked, this));
-            pMenuItem->setAnchorPoint(Vec2::ZERO);
-            pMenuItem->setPosition(Vec2::ZERO);
+            pMenuItem->setAnchorPoint(cocos2d::Vec2::ZERO);
+            pMenuItem->setPosition(cocos2d::Vec2::ZERO);
             pMenuItem->setTag(TAG_TAB_ITEM);
             pMenuItem->setName(_tabDataArray.at(i).TabName);
             pMenuItem->setIndexMapping(i);
@@ -561,33 +561,33 @@ TableViewCell* ExTabView::tableCellAtIndex(TableView *table, ssize_t idx)
                 _preSelectedTab = pMenuItem;
             
                 _tabView->removeAllChildren();
-                _tabView->setColor(Color3B(_backgroundColor));
+                _tabView->setColor(cocos2d::Color3B(_backgroundColor));
                 auto subView = _tabViewArray.at(i);
                 float yPos = _realContentSize.height - _tabSize.height - _realSubContentSize.height;
-                subView->setPosition(Vec2(0.0f, yPos));
+                subView->setPosition(cocos2d::Vec2(0.0f, yPos));
                 _tabView->addChild(subView);
             }
         
             // set tab title
-            Label* pLabel = nullptr;
+            cocos2d::Label* pLabel = nullptr;
             if(_titleFontName.find(".fnt") != std::string::npos)
             {
-                pLabel = Label::createWithBMFont(_titleFontName, _tabDataArray.at(i).TabName);
+                pLabel = cocos2d::Label::createWithBMFont(_titleFontName, _tabDataArray.at(i).TabName);
             }
             else
             {
-                if (FileUtils::getInstance()->isFileExist(_titleFontName))
+                if (cocos2d::FileUtils::getInstance()->isFileExist(_titleFontName))
                 {
-                    pLabel = Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
+                    pLabel = cocos2d::Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
                 }
                 else
                 {
-                    pLabel = Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
+                    pLabel = cocos2d::Label::createWithSystemFont(_tabDataArray.at(i).TabName, _titleFontName, _titleFontSize);
                 }
             }
-            pLabel->setAnchorPoint(Vec2(0.5f, 0.5f));
+            pLabel->setAnchorPoint(cocos2d::Vec2(0.5f, 0.5f));
             pLabel->setColor(_titleFontColor);
-            pLabel->setPosition(Vec2(_tabSize.width * 0.5f, _tabSize.height * 0.5f));
+            pLabel->setPosition(cocos2d::Vec2(_tabSize.width * 0.5f, _tabSize.height * 0.5f));
             pLabel->setScaleX(1.0f / pMenuItem->getScaleX());
             
             pMenuItem->addChild(pLabel);
@@ -609,7 +609,7 @@ ssize_t ExTabView::numberOfCellsInTableView(TableView *table)
 
 
 // just do nothing for this layer can't call to check touch for menu
-bool ExTabView::onTouchBegan(Touch *touch, Event *unused_event)
+bool ExTabView::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CC_UNUSED_PARAM(touch);
     CC_UNUSED_PARAM(unused_event);
@@ -617,19 +617,19 @@ bool ExTabView::onTouchBegan(Touch *touch, Event *unused_event)
     return true;
 }
 
-void ExTabView::onTouchMoved(Touch *touch, Event *unused_event)
+void ExTabView::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CC_UNUSED_PARAM(touch);
     CC_UNUSED_PARAM(unused_event);
 }
 
-void ExTabView::onTouchEnded(Touch *touch, Event *unused_event)
+void ExTabView::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CC_UNUSED_PARAM(touch);
     CC_UNUSED_PARAM(unused_event);
 }
 
-void ExTabView::onTouchCancelled(Touch *touch, Event *unused_event)
+void ExTabView::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CC_UNUSED_PARAM(touch);
     CC_UNUSED_PARAM(unused_event);

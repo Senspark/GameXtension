@@ -36,7 +36,7 @@ bool QuestionDialog::onAssignCCBMemberVariable(cocos2d::Ref* pTarget, const char
     return Dialog::onAssignCCBMemberVariable(pTarget, pMemberVariableName, pNode);
 }
 
-SEL_MenuHandler QuestionDialog::onResolveCCBCCMenuItemSelector(cocos2d::Ref * pTarget, const char* pSelectorName) {
+cocos2d::SEL_MenuHandler QuestionDialog::onResolveCCBCCMenuItemSelector(cocos2d::Ref * pTarget, const char* pSelectorName) {
     return Dialog::onResolveCCBCCMenuItemSelector(pTarget, pSelectorName);
 }
 

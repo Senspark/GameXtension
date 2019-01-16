@@ -58,8 +58,8 @@ void PopupDialog::onOkButtonClickListener(cocos2d::Ref* pSender, cocos2d::extens
     if (_okCallFunc!=NULL) {
         this->runAction(_okCallFunc);
     } else {
-        DialogDirector::getInstance()->end(EaseElasticIn::create(MoveTo::create(1, Point(Director::getInstance()->getWinSize().width/2*3,
-                                                                                         Director::getInstance()->getWinSize().height/2)), 1.0f));
+        DialogDirector::getInstance()->end(cocos2d::EaseElasticIn::create(cocos2d::MoveTo::create(1, cocos2d::Point(cocos2d::Director::getInstance()->getWinSize().width/2*3,
+                                                                                         cocos2d::Director::getInstance()->getWinSize().height/2)), 1.0f));
     }
 }
 

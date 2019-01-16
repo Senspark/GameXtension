@@ -41,7 +41,7 @@ ExTextFieldTTF::ExTextFieldTTF() :      _strRealText(""),
 {
 }
 
-ExTextFieldTTF * ExTextFieldTTF::textFieldWithPlaceHolder(const std::string& placeholder, const Size& dimensions, TextHAlignment alignment, const std::string& fontName, float fontSize)
+ExTextFieldTTF * ExTextFieldTTF::textFieldWithPlaceHolder(const std::string& placeholder, const cocos2d::Size& dimensions, cocos2d::TextHAlignment alignment, const std::string& fontName, float fontSize)
 {
     ExTextFieldTTF *ret = new (std::nothrow) ExTextFieldTTF();
     if(ret && ret->initWithPlaceHolder("", dimensions, alignment, fontName, fontSize))
@@ -83,7 +83,7 @@ void ExTextFieldTTF::setString(const std::string& text)
     // check password
     if(_passwordEnabled)
     {
-        string strTemp(_strVisiableText.size(), _passwordStyleText);
+        std::string strTemp(_strVisiableText.size(), _passwordStyleText);
         _strVisiableText = strTemp;
     }
     TextFieldTTF::setString(_strVisiableText);
@@ -104,18 +104,18 @@ void ExTextFieldTTF::setRealString(const std::string& text)
         _strVisiableText = this->getVisibleText(_strRealText, _nMaxTextCanShowLenght);
         
         // check password
-        string strSetValue = _strVisiableText;
+        std::string strSetValue = _strVisiableText;
         if(_passwordEnabled)
         {
-            string strTemp(strSetValue.size(), _passwordStyleText);
+            std::string strTemp(strSetValue.size(), _passwordStyleText);
             strSetValue = strTemp;
         }
         TextFieldTTF::setString(strSetValue);
     }
     
-    log("Real string: %s", _strRealText.c_str());
-    log("Show string: %s", _strVisiableText.c_str());
-    log("On screen:   %s", _inputText.c_str());
+    cocos2d::log("Real string: %s", _strRealText.c_str());
+    cocos2d::log("Show string: %s", _strVisiableText.c_str());
+    cocos2d::log("On screen:   %s", _inputText.c_str());
 }
 
 void ExTextFieldTTF::updateString(const std::string& text)
@@ -123,17 +123,17 @@ void ExTextFieldTTF::updateString(const std::string& text)
     _strVisiableText = this->getVisibleText(text, _nMaxTextCanShowLenght);
     
     // check password
-    string strSetValue = _strVisiableText;
+    std::string strSetValue = _strVisiableText;
     if(_passwordEnabled)
     {
-        string strTemp(strSetValue.size(), _passwordStyleText);
+        std::string strTemp(strSetValue.size(), _passwordStyleText);
         strSetValue = strTemp;
     }
     TextFieldTTF::setString(strSetValue);
     
-    log("Real string: %s", _strRealText.c_str());
-    log("Show string: %s", _strVisiableText.c_str());
-    log("On screen:   %s", _inputText.c_str());
+    cocos2d::log("Real string: %s", _strRealText.c_str());
+    cocos2d::log("Show string: %s", _strVisiableText.c_str());
+    cocos2d::log("On screen:   %s", _inputText.c_str());
     
     // update call back any edit change text
     if(_updateBgCallBack)
@@ -255,9 +255,9 @@ void ExTextFieldTTF::deleteBackward()
     // update interface
     updateString(_strRealText);
     
-    log("Real string: %s", _strRealText.c_str());
-    log("Show string: %s", _strVisiableText.c_str());
-    log("On screen:   %s", _inputText.c_str());
+    cocos2d::log("Real string: %s", _strRealText.c_str());
+    cocos2d::log("Show string: %s", _strVisiableText.c_str());
+    cocos2d::log("On screen:   %s", _inputText.c_str());
 }
 
 void ExTextFieldTTF::setSystemFontSize(float fontSize)
@@ -302,9 +302,9 @@ void ExTextFieldTTF::setFixedWidth(float fWidth)
     }
 }
 
-string ExTextFieldTTF::getVisibleText(string strFullText, int &outPutMaxLenght)
+std::string ExTextFieldTTF::getVisibleText(std::string strFullText, int &outPutMaxLenght)
 {
-    string strTemp              = "";
+    std::string strTemp              = "";
     int nCharCount              = outPutMaxLenght;
     int nFullTextCharCount      = (int)strFullText.size();
     
@@ -327,7 +327,7 @@ string ExTextFieldTTF::getVisibleText(string strFullText, int &outPutMaxLenght)
                 strTemp         = strFullText.substr(nFullTextCharCount - nCharCount);
                 if(_passwordEnabled)
                 {
-                    string strTemp2(strTemp.size(), _passwordStyleText);
+                    std::string strTemp2(strTemp.size(), _passwordStyleText);
                     strTemp = strTemp2;
                 }
                 Label::setString(strTemp);
@@ -351,7 +351,7 @@ string ExTextFieldTTF::getVisibleText(string strFullText, int &outPutMaxLenght)
                 strTemp         = strFullText.substr(nFullTextCharCount - nCharCount);
                 if(_passwordEnabled)
                 {
-                    string strTemp2(strTemp.size(), _passwordStyleText);
+                    std::string strTemp2(strTemp.size(), _passwordStyleText);
                     strTemp = strTemp2;
                 }
                 Label::setString(strTemp);
@@ -406,8 +406,8 @@ int ExTextFieldTTF::calcuMaxCharCanShow(float maxWidth)
     
     this->pLabel                = nullptr;
     
-    log("Max tex size %d", _maxTextureSize);
-    log("Max char     %d", nTemp);
+    cocos2d::log("Max tex size %d", _maxTextureSize);
+    cocos2d::log("Max char     %d", nTemp);
     
     return nTemp;
 }
@@ -417,7 +417,7 @@ ExTextField::ExTextField() : _pExTextFieldTTF(nullptr),
 {
 }
 
-ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placeholder, const Size& dimensions, TextHAlignment alignment, const std::string& fontName, float fontSize, SpriteFrame* spriteFrameBg)
+ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placeholder, const cocos2d::Size& dimensions, cocos2d::TextHAlignment alignment, const std::string& fontName, float fontSize, cocos2d::SpriteFrame* spriteFrameBg)
 {
     ExTextField *pExTextField = new (std::nothrow) ExTextField();
     if (pExTextField && spriteFrameBg)
@@ -425,14 +425,14 @@ ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placehold
         pExTextField->autorelease();
         
         // init bg
-        pExTextField->_pSpriteBg = Sprite::createWithSpriteFrame(spriteFrameBg);
+        pExTextField->_pSpriteBg = cocos2d::Sprite::createWithSpriteFrame(spriteFrameBg);
         pExTextField->addChild(pExTextField->_pSpriteBg);
         
         // init the text
         pExTextField->_pExTextFieldTTF = ExTextFieldTTF::textFieldWithPlaceHolder(placeholder, dimensions, alignment, fontName, fontSize);
         pExTextField->addChild(pExTextField->_pExTextFieldTTF);
         pExTextField->_pExTextFieldTTF->setUpdateBgCallBack(CC_CALLBACK_0(ExTextField::updateBackgroundImg, pExTextField));
-        pExTextField->_pExTextFieldTTF->setPosition(Vec2(MARGIN_LEFT_RIGHT, 0.0f));
+        pExTextField->_pExTextFieldTTF->setPosition(cocos2d::Vec2(MARGIN_LEFT_RIGHT, 0.0f));
         
         pExTextField->updateBackgroundImg();
         
@@ -442,7 +442,7 @@ ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placehold
     return nullptr;
 }
 
-ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize, SpriteFrame* spriteFrameBg)
+ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize, cocos2d::SpriteFrame* spriteFrameBg)
 {
     ExTextField *pExTextField = new (std::nothrow) ExTextField();
     if (pExTextField && spriteFrameBg)
@@ -450,14 +450,14 @@ ExTextField * ExTextField::textFieldWithPlaceHolder(const std::string& placehold
         pExTextField->autorelease();
         
         // init bg
-        pExTextField->_pSpriteBg = Sprite::createWithSpriteFrame(spriteFrameBg);
+        pExTextField->_pSpriteBg = cocos2d::Sprite::createWithSpriteFrame(spriteFrameBg);
         pExTextField->addChild(pExTextField->_pSpriteBg);
         
         // init the text
         pExTextField->_pExTextFieldTTF = ExTextFieldTTF::textFieldWithPlaceHolder(placeholder, fontName, fontSize);
         pExTextField->addChild(pExTextField->_pExTextFieldTTF);
         pExTextField->_pExTextFieldTTF->setUpdateBgCallBack(CC_CALLBACK_0(ExTextField::updateBackgroundImg, pExTextField));
-        pExTextField->_pExTextFieldTTF->setPosition(Vec2(MARGIN_LEFT_RIGHT, 0.0f));
+        pExTextField->_pExTextFieldTTF->setPosition(cocos2d::Vec2(MARGIN_LEFT_RIGHT, 0.0f));
         
         pExTextField->updateBackgroundImg();
         
@@ -509,7 +509,7 @@ bool ExTextField::getPasswordEnabled()
     return this->_pExTextFieldTTF->getPasswordEnabled();
 }
 
-void ExTextField::setAnchorPoint(const Vec2& anchorPoint)
+void ExTextField::setAnchorPoint(const cocos2d::Vec2& anchorPoint)
 {
     Node::setAnchorPoint(anchorPoint);
     
@@ -517,7 +517,7 @@ void ExTextField::setAnchorPoint(const Vec2& anchorPoint)
     this->_pExTextFieldTTF->setAnchorPoint(anchorPoint);
 }
 
-const Size& ExTextField::getContentSize() const
+const cocos2d::Size& ExTextField::getContentSize() const
 {
     return this->_pExTextFieldTTF->getContentSize();
 }

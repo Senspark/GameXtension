@@ -10,7 +10,7 @@
 
 USING_NS_SS;
 
-ExControlButton* ExControlButton::create(ui::Scale9Sprite* sprite)
+ExControlButton* ExControlButton::create(cocos2d::ui::Scale9Sprite* sprite)
 {
     ExControlButton *pRet = new (std::nothrow) ExControlButton();
     pRet->initWithBackgroundSprite(sprite);
@@ -51,17 +51,17 @@ void ExControlButton::setFuncName(const std::string& strFuncName)
 //    _mapTextState[state] = color;
 //}
 
-void ExControlButton::setBgColorForState(Control::State state, Color3B color)
+void ExControlButton::setBgColorForState(Control::State state, cocos2d::Color3B color)
 {
     _mapBgState[state] = color;
 }
 
-void ExControlButton::setIconColorForState(Control::State state, Color3B color)
+void ExControlButton::setIconColorForState(Control::State state, cocos2d::Color3B color)
 {
     _mapIconState[state] = color;
 }
 
-void ExControlButton::setBorderColorForState(Control::State state, Color3B color)
+void ExControlButton::setBorderColorForState(Control::State state, cocos2d::Color3B color)
 {
     _mapBorderState[state] = color;
 }
@@ -69,23 +69,23 @@ void ExControlButton::setBorderColorForState(Control::State state, Color3B color
 void ExControlButton::updateUI()
 {
     // prepare and set sprite frame and set color for each layer in each state
-    string          strSpriteFrameName          = "";
-    string          strTemplateSpriteName       = "";
-    string          strFunctional               = _strFuncName;
-    SpriteFrame*    pSpriteFrame                = nullptr;
+    std::string          strSpriteFrameName          = "";
+    std::string          strTemplateSpriteName       = "";
+    std::string          strFunctional               = _strFuncName;
+    cocos2d::SpriteFrame*    pSpriteFrame                = nullptr;
     
     // temp data for iterator all the item
-    std::map<Control::State, string> mapTemp;
+    std::map<Control::State, std::string> mapTemp;
     mapTemp[Control::State::NORMAL]             = "%s_%s_%02d.png";
     mapTemp[Control::State::HIGH_LIGHTED]       = "%s_%s_%02d.png";
     mapTemp[Control::State::DISABLED]           = "%s_%s_%02d.png";
     
-    std::map<Control::State, string> mapTempState;
+    std::map<Control::State, std::string> mapTempState;
     mapTempState[Control::State::NORMAL]         = "normal";
     mapTempState[Control::State::HIGH_LIGHTED]   = "select";
     mapTempState[Control::State::DISABLED]       = "disable";
     
-    std::map<int, std::map<Control::State, Color3B> > mapTempColorForSrite;
+    std::map<int, std::map<Control::State, cocos2d::Color3B> > mapTempColorForSrite;
     mapTempColorForSrite[0]                     = _mapBgState;
     mapTempColorForSrite[1]                     = _mapIconState;
     mapTempColorForSrite[2]                     = _mapBorderState;
@@ -122,13 +122,13 @@ void ExControlButton::updateUI()
             strTemplateSpriteName   = iter->second;
             if(mapTempState.count(iter->first) > 0)
             {
-                strSpriteFrameName      = __String::createWithFormat(strTemplateSpriteName.c_str(),
+                strSpriteFrameName      = cocos2d::__String::createWithFormat(strTemplateSpriteName.c_str(),
                                                                      strFunctional.c_str(),
                                                                      mapTempState[iter->first].c_str(),
                                                                      (int)(nLayer + 1))->getCString();
             }
             
-            pSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(strSpriteFrameName);
+            pSpriteFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(strSpriteFrameName);
             
             // check if pSpriteFrame continue null -> continue
             if(pSpriteFrame == nullptr)
@@ -160,24 +160,24 @@ void ExControlButton::updateUI()
             else
             {
                 // check and get if exist
-                Sprite*     pSpriteChild    = nullptr;
+                cocos2d::Sprite*     pSpriteChild    = nullptr;
                 auto        pChild          = /*pSprite != nullptr ?  (pSprite->getChildByTag((int)(nLayer + 1))) :*/
                                                     (pScale9Sprite != nullptr ? pScale9Sprite->getChildByTag((int)(nLayer + 1)) : nullptr);
                 if(pChild != nullptr)
                 {
-                    pSpriteChild = dynamic_cast<Sprite*>(pChild);
+                    pSpriteChild = dynamic_cast<cocos2d::Sprite*>(pChild);
                 }
                 
                 // check if null -> create and add it
                 if(pSpriteChild == nullptr)
                 {
-                    pSpriteChild = Sprite::createWithSpriteFrame(pSpriteFrame);
+                    pSpriteChild = cocos2d::Sprite::createWithSpriteFrame(pSpriteFrame);
                 }
                 
                 // if it not null -> add an continue
                 if(pSpriteChild != nullptr)
                 {
-                    pSpriteChild->setAnchorPoint(Vec2::ZERO);
+                    pSpriteChild->setAnchorPoint(cocos2d::Vec2::ZERO);
                     
                     if(mapTempColorForSrite[nLayer].count(iter->first) > 0)
                     {

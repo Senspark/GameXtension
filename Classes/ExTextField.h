@@ -13,18 +13,18 @@
 #include "ui/CocosGUI.h"
 #include "SSMacros.h"
 
-USING_NS_CC;
-using namespace std;
+//USING_NS_CC;
+//using namespace std;
 
 NS_SS_BEGIN
 
 typedef std::function<void()> ccFuncCallback;
 
-class ExTextFieldTTF : public TextFieldTTF
+class ExTextFieldTTF : public cocos2d::TextFieldTTF
 {
 protected:
-    string          _strRealText;            // real text
-    string          _strVisiableText;        // just visible text
+    std::string          _strRealText;            // real text
+    std::string          _strVisiableText;        // just visible text
     CC_SYNTHESIZE(bool, _passwordEnabled, PasswordEnabled);
     char          _passwordStyleText;
     CC_SYNTHESIZE(int, _nMaxTextLenght, MaxTextLenght);
@@ -35,7 +35,7 @@ public:
     ExTextFieldTTF();
     
     /** creates a ExTextField from a fontname, alignment, dimension and font size */
-    static ExTextFieldTTF * textFieldWithPlaceHolder(const std::string& placeholder, const cocos2d::Size& dimensions, TextHAlignment alignment, const std::string& fontName, float fontSize);
+    static ExTextFieldTTF * textFieldWithPlaceHolder(const std::string& placeholder, const cocos2d::Size& dimensions, cocos2d::TextHAlignment alignment, const std::string& fontName, float fontSize);
     /** creates a ExTextField from a fontname and font size */
     static ExTextFieldTTF * textFieldWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize);
     
@@ -63,7 +63,7 @@ public:
     int calcuMaxCharCanShow(float maxWidth = 0.0f);
     
 private:
-    string getVisibleText(string strFullText, int& outPutMaxLenght);
+    std::string getVisibleText(std::string strFullText, int& outPutMaxLenght);
     
     // max texture size
     GLint _maxTextureSize;
@@ -74,15 +74,15 @@ private:
 
 
 // this cover class because ExTextFieldTTF have base class Lable can't add any child obj
-class ExTextField : public Node
+class ExTextField : public cocos2d::Node
 {
 public:
     ExTextField();
     
     /** creates a ExTextField from a fontname, alignment, dimension and font size */
-    static ExTextField * textFieldWithPlaceHolder(const std::string& placeholder, const cocos2d::Size& dimensions, TextHAlignment alignment, const std::string& fontName, float fontSize, SpriteFrame* spriteFrameBg);
+    static ExTextField * textFieldWithPlaceHolder(const std::string& placeholder, const cocos2d::Size& dimensions, cocos2d::TextHAlignment alignment, const std::string& fontName, float fontSize, cocos2d::SpriteFrame* spriteFrameBg);
     /** creates a ExTextField from a fontname and font size */
-    static ExTextField * textFieldWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize, SpriteFrame* spriteFrameBg);
+    static ExTextField * textFieldWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize, cocos2d::SpriteFrame* spriteFrameBg);
     
     // some navigate to ExTextFieldTTF class
     virtual void setString(std::string strText);
@@ -97,7 +97,7 @@ public:
     virtual void setPasswordEnabled(bool value);
     virtual bool getPasswordEnabled();
     
-    virtual void setAnchorPoint(const Vec2& anchorPoint) override;
+    virtual void setAnchorPoint(const cocos2d::Vec2& anchorPoint) override;
     virtual const cocos2d::Size& getContentSize() const override;
     
     // the func for set the fix width of background, if not, it just scale content the text
@@ -115,7 +115,7 @@ public:
     
 protected:
     ExTextFieldTTF* _pExTextFieldTTF;
-    Sprite* _pSpriteBg;
+    cocos2d::Sprite* _pSpriteBg;
     
     void updateBackgroundImg(); // update background scale
 };

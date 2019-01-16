@@ -19,9 +19,9 @@ ExEditBox::ExEditBox() :    _animationWhenKeyboardMoving(false),
 }
 
 ExEditBox* ExEditBox::create(const cocos2d::Size &size,
-                             ui::Scale9Sprite *normalSprite,
-                             ui::Scale9Sprite *pressedSprite,
-                             ui::Scale9Sprite* disabledSprite)
+                             cocos2d::ui::Scale9Sprite *normalSprite,
+                             cocos2d::ui::Scale9Sprite *pressedSprite,
+                             cocos2d::ui::Scale9Sprite* disabledSprite)
 {
     ExEditBox* pRet = new (std::nothrow) ExEditBox();
     
@@ -37,14 +37,14 @@ ExEditBox* ExEditBox::create(const cocos2d::Size &size,
     return pRet;
 }
 
-static Rect getRect(Node * pNode)
+static cocos2d::Rect getRect(cocos2d::Node * pNode)
 {
-    Size contentSize = pNode->getContentSize();
-    Rect rect = Rect(0, 0, contentSize.width, contentSize.height);
+    cocos2d::Size contentSize = pNode->getContentSize();
+    cocos2d::Rect rect = cocos2d::Rect(0, 0, contentSize.width, contentSize.height);
     return RectApplyTransform(rect, pNode->getNodeToWorldTransform());
 }
 
-void ExEditBox::keyboardWillShow(IMEKeyboardNotificationInfo& info)
+void ExEditBox::keyboardWillShow(cocos2d::IMEKeyboardNotificationInfo& info)
 {
     if(_animationWhenKeyboardMoving)
     {
@@ -53,7 +53,7 @@ void ExEditBox::keyboardWillShow(IMEKeyboardNotificationInfo& info)
     else
     {
         // CCLOG("CCEditBox::keyboardWillShow");
-        Rect rectTracked = getRect(this);
+        cocos2d::Rect rectTracked = getRect(this);
         // some adjustment for margin between the keyboard and the edit box.
         rectTracked.origin.y -= 4;
         
@@ -75,7 +75,7 @@ void ExEditBox::keyboardWillShow(IMEKeyboardNotificationInfo& info)
     }
 }
 
-void ExEditBox::keyboardDidShow(IMEKeyboardNotificationInfo& info)
+void ExEditBox::keyboardDidShow(cocos2d::IMEKeyboardNotificationInfo& info)
 {
     if(_animationWhenKeyboardMoving)
     {
@@ -83,7 +83,7 @@ void ExEditBox::keyboardDidShow(IMEKeyboardNotificationInfo& info)
     }
 }
 
-void ExEditBox::keyboardWillHide(IMEKeyboardNotificationInfo& info)
+void ExEditBox::keyboardWillHide(cocos2d::IMEKeyboardNotificationInfo& info)
 {
     if(_animationWhenKeyboardMoving)
     {
@@ -91,7 +91,7 @@ void ExEditBox::keyboardWillHide(IMEKeyboardNotificationInfo& info)
     }
 }
 
-void ExEditBox::keyboardDidHide(IMEKeyboardNotificationInfo& info)
+void ExEditBox::keyboardDidHide(cocos2d::IMEKeyboardNotificationInfo& info)
 {
     if(_animationWhenKeyboardMoving)
     {
@@ -160,7 +160,7 @@ void ExEditBox::onEnter(void)
 //    if(_maxLength <= 0)
     {
         _bIsScheduleUpdateMaxText   = true;
-        pLable                      = Label::create();
+        pLable                      = cocos2d::Label::create();
 //        pLable->setSystemFontName(_fontName);
 //        pLable->setSystemFontSize(_fontSize);
         this->addChild(pLable);

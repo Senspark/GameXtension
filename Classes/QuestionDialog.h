@@ -23,7 +23,7 @@
 #include "Dialog.h"
 #include "cocosbuilder/CocosBuilder.h"
 
-USING_NS_CC;
+//USING_NS_CC;
 USING_NS_CC_EXT;
 
 NS_SS_BEGIN

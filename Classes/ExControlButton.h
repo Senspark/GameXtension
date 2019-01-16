@@ -13,10 +13,10 @@
 #include "extensions/cocos-ext.h"
 #include "SSMacros.h"
 
-USING_NS_CC;
+//USING_NS_CC;
 USING_NS_CC_EXT;
 
-using namespace std;
+//using namespace std;
 
 NS_SS_BEGIN
 
@@ -24,13 +24,13 @@ class ExControlButton : public ControlButton
 {
 public:
     ExControlButton();
-    static ExControlButton* create(ui::Scale9Sprite* sprite);
+    static ExControlButton* create(cocos2d::ui::Scale9Sprite* sprite);
 
     void setFuncName(const std::string& strFuncName);
 //    void setExTextColorForState(Control::State state, Color3B color);
-    void setBgColorForState(Control::State state, Color3B color);
-    void setIconColorForState(Control::State state, Color3B color);
-    void setBorderColorForState(Control::State state, Color3B color);
+    void setBgColorForState(Control::State state, cocos2d::Color3B color);
+    void setIconColorForState(Control::State state, cocos2d::Color3B color);
+    void setBorderColorForState(Control::State state, cocos2d::Color3B color);
     void updateUI();
     
     CREATE_FUNC(ExControlButton);
@@ -38,13 +38,13 @@ public:
 protected:
     virtual bool init() override;
     
-    string _strFuncName;
+    std::string _strFuncName;
     
 //    std::map<Control::State, Color3B> _mapTextState;
     
-    std::map<Control::State, Color3B> _mapBgState;
-    std::map<Control::State, Color3B> _mapIconState;
-    std::map<Control::State, Color3B> _mapBorderState;
+    std::map<Control::State, cocos2d::Color3B> _mapBgState;
+    std::map<Control::State, cocos2d::Color3B> _mapIconState;
+    std::map<Control::State, cocos2d::Color3B> _mapBorderState;
 };
 
 #define CONVERT_TO_EX_BTN(__strFuncName__, __pBtn__, __selector__) \
@@ -60,8 +60,8 @@ protected:
     for(auto iter = vecString.begin(); iter != vecString.end(); iter++) \
     { \
         bool bBreak = false; \
-        strTempSpriteName = __String::createWithFormat("%s_%s_01.png", strFuncName.c_str(), iter->c_str())->getCString(); \
-        auto pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(strTempSpriteName); \
+        strTempSpriteName = cocos2d::__String::createWithFormat("%s_%s_01.png", strFuncName.c_str(), iter->c_str())->getCString(); \
+        auto pFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(strTempSpriteName); \
         if(pFrame) \
         { \
             sprites[spriteIndex++] = cocos2d::ui::Scale9Sprite::createWithSpriteFrame(pFrame); \

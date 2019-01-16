@@ -23,12 +23,12 @@ int StringManager::init(const char **langCodes, const char** dictionaryPaths, co
     setDefaultLanguageCode(defaultLangCode);
 
     for (int i=0; langCodes[i]!=NULL; i++) {
-        ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(dictionaryPaths[i]);
+        cocos2d::ValueMap dict = cocos2d::FileUtils::getInstance()->getValueMapFromFile(dictionaryPaths[i]);
         if (dict.size() > 0) {
             _dictionaries[langCodes[i]] = dict;
-            log("Support language %s", langCodes[i]);
+            cocos2d::log("Support language %s", langCodes[i]);
         } else {
-            log("Not support language %s", langCodes[i]);
+            cocos2d::log("Not support language %s", langCodes[i]);
         }
     }
   
@@ -41,13 +41,13 @@ int StringManager::init(std::vector<senspark::LanguageType> langTypes, senspark:
     setDefaultLanguageCode(getLangCode(defaultLangType));
     
     for (auto langType : langTypes) {
-        ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(StringUtils::format("%s.lproj/strings.plist", LANGUAGE_CODES[int(langType)]));
+        cocos2d::ValueMap dict = cocos2d::FileUtils::getInstance()->getValueMapFromFile(cocos2d::StringUtils::format("%s.lproj/strings.plist", LANGUAGE_CODES[int(langType)]));
         _dictionaries[getLangCode(langType)] = dict;
         if (dict.size() > 0) {
             _dictionaries[getLangCode(langType)] = dict;
-            log("Support language %s", getLangCode(langType).c_str());
+            cocos2d::log("Support language %s", getLangCode(langType).c_str());
         } else {
-            log("Not support language %s", getLangCode(langType).c_str());
+            cocos2d::log("Not support language %s", getLangCode(langType).c_str());
         }
     }
     CCLOG("Language count = %ld", _dictionaries.size());
@@ -60,20 +60,20 @@ int StringManager::init(senspark::LanguageType defaultLangType)
     
     for(int i = (int)senspark::LanguageType::UNDEFINED + 1; i < (int)senspark::LanguageType::LANGUAGE_TYPE_COUNT; i++)
     {
-        string strFileName = string(LANGUAGE_CODES[i]) + ".lproj/strings.plist";
-        if (FileUtils::getInstance()->isFileExist(strFileName))
+        std::string strFileName = std::string(LANGUAGE_CODES[i]) + ".lproj/strings.plist";
+        if (cocos2d::FileUtils::getInstance()->isFileExist(strFileName))
         {
-            ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(strFileName);
+            cocos2d::ValueMap dict = cocos2d::FileUtils::getInstance()->getValueMapFromFile(strFileName);
             _dictionaries[getLangCode((senspark::LanguageType)i)] = dict;
-            log("Support language %s", getLangCode((senspark::LanguageType)i).c_str());
+            cocos2d::log("Support language %s", getLangCode((senspark::LanguageType)i).c_str());
         }
         else
         {
-            log("Not support language %s", getLangCode((senspark::LanguageType)i).c_str());
+            cocos2d::log("Not support language %s", getLangCode((senspark::LanguageType)i).c_str());
         }
     }
     
-    log("Language count = %ld", _dictionaries.size());
+    cocos2d::log("Language count = %ld", _dictionaries.size());
     return (int) _dictionaries.size();
 }
 
@@ -89,16 +89,16 @@ bool StringManager::isSupportLanguage(senspark::LanguageType type)
     return (_dictionaries.count(getLangCode(type)) > 0);
 }
 
-void StringManager::setDefaultLanguageCode(const string &langCode) {
+void StringManager::setDefaultLanguageCode(const std::string &langCode) {
     _defaultLanguageCode = langCode;
     _defaultLanguage = getLangType(langCode);
 }
 
-const string StringManager::getString(const string &key, const string &langCode)
+const std::string StringManager::getString(const std::string &key, const std::string &langCode)
 {
     // return value
-    string strValue     = "";
-    string strLangCode  = langCode;
+    std::string strValue     = "";
+    std::string strLangCode  = langCode;
     std::string defaultLangCode = "en";
     
     // check if exist input language data
@@ -122,19 +122,19 @@ const string StringManager::getString(const string &key, const string &langCode)
     return strValue;
 }
 
-const string StringManager::getString(const string &key, senspark::LanguageType langType) {
+const std::string StringManager::getString(const std::string &key, senspark::LanguageType langType) {
     return getString(key, getLangCode(langType));
 }
 
-const string StringManager::getString(const string &key) {
+const std::string StringManager::getString(const std::string &key) {
     return getString(key, _defaultLanguage);
 }
 
-string StringManager::getLangCode(senspark::LanguageType langType) {
+std::string StringManager::getLangCode(senspark::LanguageType langType) {
     return LANGUAGE_CODES[int(langType)];
 }
 
-senspark::LanguageType StringManager::getLangType(string langCode) {
+senspark::LanguageType StringManager::getLangType(std::string langCode) {
     for (int i = 0; i < int(senspark::LanguageType::LANGUAGE_TYPE_COUNT); i++) {
         if (langCode.compare(LANGUAGE_CODES[i]) == 0) {
             return senspark::LanguageType(i);

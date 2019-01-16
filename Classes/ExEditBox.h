@@ -14,13 +14,13 @@
 #include "ui/CocosGUI.h"
 #include "SSMacros.h"
 
-USING_NS_CC;
+//USING_NS_CC;
 USING_NS_CC_EXT;
-using namespace std;
+//using namespace std;
 
 NS_SS_BEGIN
 
-class ExEditBox : public ui::EditBox
+class ExEditBox : public cocos2d::ui::EditBox
 {
 public:
     
@@ -31,9 +31,9 @@ public:
      * @return An autorelease pointer of ExEditBox, you don't need to release it only if you retain it again.
      */
     static ExEditBox* create(const cocos2d::Size& size,
-                             ui::Scale9Sprite* normalSprite,
-                             ui::Scale9Sprite* pressedSprite = nullptr,
-                             ui::Scale9Sprite* disabledSprite = nullptr);
+                             cocos2d::ui::Scale9Sprite* normalSprite,
+                             cocos2d::ui::Scale9Sprite* pressedSprite = nullptr,
+                             cocos2d::ui::Scale9Sprite* disabledSprite = nullptr);
     
     // check for max text lenght
     void updateMaxTextLenght(float dt);
@@ -48,22 +48,22 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual void keyboardWillShow(IMEKeyboardNotificationInfo& info) override;
+    virtual void keyboardWillShow(cocos2d::IMEKeyboardNotificationInfo& info) override;
     /**
      * @js NA
      * @lua NA
      */
-    virtual void keyboardDidShow(IMEKeyboardNotificationInfo& info) override;
+    virtual void keyboardDidShow(cocos2d::IMEKeyboardNotificationInfo& info) override;
     /**
      * @js NA
      * @lua NA
      */
-    virtual void keyboardWillHide(IMEKeyboardNotificationInfo& info) override;
+    virtual void keyboardWillHide(cocos2d::IMEKeyboardNotificationInfo& info) override;
     /**
      * @js NA
      * @lua NA
      */
-    virtual void keyboardDidHide(IMEKeyboardNotificationInfo& info) override;
+    virtual void keyboardDidHide(cocos2d::IMEKeyboardNotificationInfo& info) override;
     
 protected:
     
@@ -74,7 +74,7 @@ protected:
     bool _bIsScheduleUpdateMaxText;
     
     // previous text
-    string _strPreviousText;
+    std::string _strPreviousText;
     
     // max texture size
     GLint _maxTextureSize;
